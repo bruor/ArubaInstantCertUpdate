@@ -1,0 +1,14 @@
+config
+wlan cert-assignment-profile
+no pki-cert-assign application ui cert-type ServerCert 
+exit
+exit
+commit apply
+crypto pki-remove cert-type ServerCert certname [Certificate_Name]
+crypto pki-import format pem cert-type ServerCert tftp://[IP_Address]/[filename] certname [Certificate_Name]
+config
+wlan cert-assignment-profile
+pki-cert-assign application ui cert-type ServerCert certname [Certificate_Name]
+exit
+exit
+commit apply
